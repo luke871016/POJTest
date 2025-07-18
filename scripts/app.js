@@ -112,6 +112,19 @@ $.getJSON('./data/vocabulary.json', function(json) {
         }
       });
     });
+
+    // 修正：根據目前選擇的拼音系統，自動套用顯示狀態
+    function applyLangSwitchInDisplay() {
+      if ($('input[name=use-poj]:checked').attr('id') === 'use-tl') {
+        $('.poj').addClass('hide');
+        $('.tl').addClass('show');
+      } else {
+        $('.poj').removeClass('hide');
+        $('.tl').removeClass('show');
+      }
+    }
+    // 新增：產生新詞彙列表後立即套用
+    applyLangSwitchInDisplay();
   
     function playAudio(currentAudioI) {
       function checkFile() {
