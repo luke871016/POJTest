@@ -109,11 +109,11 @@ $.getJSON('./data/vocabulary.json', function(json) {
           thisVTPOJ = thisVTPOJ.replace('/', '<span class="or">又</span>')
           thisVTTL = thisVTTL.replace('/', '<span class="or">又</span>')
           vList.find('li').eq(i).find('.result').prepend(`<span class="poj">${thisVTPOJ}</span><span class="tl">${thisVTTL}</span>`);
+          applyLangSwitchInDisplay();
         }
       });
     });
 
-    // 修正：根據目前選擇的拼音系統，自動套用顯示狀態
     function applyLangSwitchInDisplay() {
       if ($('input[name=use-poj]:checked').attr('id') === 'use-tl') {
         $('.poj').addClass('hide');
@@ -123,8 +123,6 @@ $.getJSON('./data/vocabulary.json', function(json) {
         $('.tl').removeClass('show');
       }
     }
-    // 新增：產生新詞彙列表後立即套用
-    applyLangSwitchInDisplay();
   
     function playAudio(currentAudioI) {
       function checkFile() {
